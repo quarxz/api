@@ -8,7 +8,6 @@ function App() {
   const [isloading, setIsloading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [users, setUsers] = useState([]);
-  const [coordinates, setCoordinates] = useState([51.505, -0.09]);
 
   useEffect(() => {
     async function loadData() {
@@ -48,11 +47,7 @@ function App() {
       {isloading ? (
         <p>Lade Daten...</p>
       ) : (
-        <OpenStreetMap
-          coordinates={coordinates}
-          users={users}
-          isloading={isloading}
-        />
+        <OpenStreetMap users={users} isloading={isloading} />
       )}
     </main>
   );

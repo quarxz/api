@@ -44,12 +44,11 @@ function LocationMarker({ coordinates }) {
 
 function ChangeView({ center, zoom }) {
   const map = useMap();
-  console.log(center);
   map.flyTo(center, zoom);
   return null;
 }
 
-export function OpenStreetMap({ coordinates, users, isloading }) {
+export function OpenStreetMap({ users, isloading }) {
   const [latLong, setLatLong] = useState([51.505, -0.09]);
 
   const position = [51.505, -0.09];
