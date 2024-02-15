@@ -33,12 +33,12 @@ body {
 
 main {
   width: 100vw;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  margin-left: -20vw;
+  margin-right: -20vw;
 }
 
 .leaflet-container {
-  height: 80vh;
+  height: 70vh;
   z-index: 1;
 }
 
@@ -77,4 +77,10 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+select {
+  padding: 0.5em 0.5em;
+  border: 0.5em solid transparent;
+  margin-bottom: 1em;
 }
