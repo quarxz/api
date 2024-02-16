@@ -15,7 +15,7 @@ function App() {
       try {
         setIsloading(true);
         const response = await axios.get(
-          `${"https://randomuser.me/api/?results="}${10}${"&gender=female"}`
+          `${"https://randomuser.me/api/?results="}${30}${"&gender=female"}`
         );
 
         console.log(response.data.results);
