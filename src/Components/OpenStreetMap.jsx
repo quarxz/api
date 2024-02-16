@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import {
   MapContainer,
   TileLayer,
@@ -21,7 +23,7 @@ function SetViewOnClick({ animateRef }) {
   return null;
 }
 
-function LocationMarker({ coordinates }) {
+function LocationMarker() {
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
     click() {
@@ -54,6 +56,17 @@ export function OpenStreetMap({ users, isloading }) {
   const position = [51.505, -0.09];
   const animateRef = useRef(false);
 
+  const options = users.map((user) => {
+    return {
+      value: [
+        user.location.coordinates.latitude,
+        user.location.coordinates.longitude,
+      ],
+      label: user.name.first + " " + user.name.last,
+    };
+  });
+  console.log(options);
+
   return (
     <>
       <p>
@@ -71,30 +84,19 @@ export function OpenStreetMap({ users, isloading }) {
         {isloading ? (
           <p>Lade Daten...</p>
         ) : (
-          <select
+          <Select
             onChange={(e) => {
-              let x = e.target.value.split(",");
-              setLatLong([x[0], x[1]]);
+              console.log(e.value[0]);
+              setLatLong([e.value[0], e.value[1]]);
             }}
-          >
-            {users.map((user) => {
-              return (
-                <option
-                  key={user.cell}
-                  value={[
-                    user.location.coordinates.latitude,
-                    user.location.coordinates.longitude,
-                  ]}
-                >
-                  {user.name.first} {user.name.last}
-                </option>
-              );
-            })}
-          </select>
+            options={options}
+            className={styles.select}
+          />
         )}
       </div>
+
       <MapContainer center={latLong} zoom={13} scrollWheelZoom={true}>
-        <ChangeView center={latLong} zoom={13} />
+        <ChangeView center={latLong} zoom={9} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

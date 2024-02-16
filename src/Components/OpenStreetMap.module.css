@@ -2,3 +2,16 @@
   height: 100%;
   width: 100%;
 }
+
+.select {
+  padding: 0.5em 0.5em;
+  border: 0.5em solid transparent;
+  margin-bottom: 1em;
+  width: 300px;
+  z-index: 100;
+  margin: 0 auto;
+}
+
+.select:hover {
+  color: #333;
+}
